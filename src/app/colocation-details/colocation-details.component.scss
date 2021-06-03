@@ -1,0 +1,91 @@
+#top{
+    background-color: #C6522F;
+    padding-top: 20px;
+}
+
+.card {
+    border-color: #FFF;
+}
+
+.card-list {
+    border-color: #F5F5F5;
+}
+
+.card-top {
+    height: 80px;
+}
+
+.t5 {
+    font-size: 14px;
+}
+
+.t6 {
+    font-size: 9px;
+}
+
+.t2 {
+    font-size: 16px;
+    color:#C6522F;
+}
+
+.my-text-right{
+    text-align: right;
+}
+
+.my-text-left{
+    text-align: left;
+}
+
+.my-border-list-grey{
+    border-color: #F5F5F5;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.sort-down-div{
+    margin-top: -4px;
+    height: 15px; 
+    width: 15px;
+}
+
+.sort-down{
+    height: 15px; 
+    width: 15px;
+}
+
+.h35-w35{
+    height: 35px;
+    width: 35px;
+}
+
+.h25-w25{
+    height: 25px;
+    width: 25px;
+}
+
+.filter-btn {
+    width: 100%;
+    background-color: #E5937A;
+    color: #FFF;
+    height: 20px;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
+
+.filter-btn:hover {
+    background-color: #C6522F;
+}
+
+.filter-btn-active{
+    background-color: #C6522F;
+}
+
+.borderless {
+    border: 0;
+}
+
+ul {
+    padding: 12px;
+}

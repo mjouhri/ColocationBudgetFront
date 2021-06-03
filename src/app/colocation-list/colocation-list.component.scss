@@ -1,0 +1,53 @@
+.card {
+    background: #FFF;
+}
+
+.t2 {
+    font-size: 30px;
+}
+
+.t4 {
+    font-size: 12px;
+}
+
+.t5 {
+    font-size: 10px;
+}
+
+.w-user{
+    width: 40px;
+}
+
+.h-user{
+    height: 40px;
+}
+
+.h-max-user{
+    max-height: 40px;
+}
+
+.card-top{
+    border-color: #C6522F; 
+    border-width: 3px;
+}
+
+.card-list{
+    border-color: #FFF;
+    border-width: 3px;
+    height: 150px;
+}
+
+.card-top:hover{
+    cursor: pointer;
+    border-color: #FFF;
+}
+
+.card-list:hover{
+    cursor: pointer;
+    border-color: #C6522F;
+}
+
+#top{
+    background-color: #C6522F;
+    padding-top: 20px;
+}

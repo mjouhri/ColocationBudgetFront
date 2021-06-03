@@ -1,0 +1,204 @@
+<div class="container-fluid">
+    <div class="row" id="top">
+        <h1 class="text-white mb-3">{{colocation?.name}}</h1>
+    </div>
+
+    <div class="row my-background-color-orange">
+        <div class="col-3 d-none d-md-block"></div>
+        <div class="col-12 col-md-6 "> 
+            <div class="card card-top m-2">
+                <div class="card-body">
+                    <input class="form-control" type="month"  id="example-month-input" value="{{clDate}}" (change)="onChangeEvent($event)">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row pb-3 pt-1" id="top">
+
+        <div class="col-6 col-md-4"> 
+            <div class="card card-top m-2">
+                <div class="card-body">
+                    <div class="container-fluid p-0">
+                    <div class="row my-cursor-click">
+                        <div class="col-12 pr-0">
+                            <h6 class="t5 text-center my-color-orange mb-0">Mes dépenses</h6>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+
+                        <div class="col-12 text-center">
+                            <h6 class="t2">{{mapTotalExpenseByUser.get(idUser) ? mapTotalExpenseByUser.get(idUser) : 0}} €</h6>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h6 *ngIf="(mapTotalExpenseByUser.get(idUser) - avgDepenseAllUsers) > 0" class="t6 text-success"> +{{mapTotalExpenseByUser.get(idUser) - avgDepenseAllUsers}} € que la moyenne</h6>
+                            <h6 *ngIf="!!avgDepenseAllUsers && (mapTotalExpenseByUser.get(idUser) - avgDepenseAllUsers) < 0" class="t6 text-danger">{{mapTotalExpenseByUser.get(idUser) - avgDepenseAllUsers }} € que la moyenne</h6>
+                            <h6 *ngIf="(mapTotalExpenseByUser.get(idUser) - avgDepenseAllUsers) === 0" class="t6 text-success">Vous êtes quitte</h6>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-md-4 d-none d-md-block"> 
+            <div class="card card-top m-2">
+            <div class="card-body">
+                <div class="container-fluid p-0">
+                <div class="row my-cursor-click">
+                    <div class="col-12 pr-0">
+                        <h6 class="t5 text-center my-color-orange mb-0">Dépense moyenne</h6>
+                    </div>
+                    <!-- <div class="col-2 px-0 sort-down-div dropdown">
+                        <img src="../../assets/icons/sort-down.png" class="sort-down dropdown-toggle" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                              <li><button class="dropdown-item" type="button">Aujourd'hui</button></li>
+                              <li><button class="dropdown-item" type="button">Dépense totale</button></li>
+                            </ul>
+                    </div> -->
+                </div>
+                <div class="row mt-2">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <h6 class="t2 text-center">{{avgDepenseAllUsers}} €</h6>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-6"> 
+            <div class="card card-top m-2">
+                <div class="card-body">
+                    <div class="container-fluid p-0">
+                    <div class="row my-cursor-click">
+                        <div class="col-12 pr-0">
+                            <h6 class="t5 text-center my-color-orange mb-0">Dépense totale</h6>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-2"></div>
+                        <div class="col-8">
+                            <h6 class="t2 text-center">{{totalDepenseAllUsers}} €</h6>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div> 
+
+    <div class="row">      
+        <div class="col-sm-6 mt-4">
+            <div class="card card-list">
+                
+              <div class="container-fluid p-0">
+                <div class="row px-4 pt-3"> 
+                  <div class="col-9">
+                      <h6 class="t5">Liste des dépenses</h6>
+                  </div>
+                  <div class="col-2 ">
+                      <img src="../../assets/icons/plus.png" class="h25-w25">
+                  </div>
+                  <div class="col-1 p-0">
+                      <img src="../../assets/icons/more.png" class="h25-w25">
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <ul *ngFor="let dateSpend of mapDateExpense | keyvalue: keyDescOrder " class="list-group py-0">
+                    <li class="list-group-item p-0 my-border-list-grey">
+                        <div class="container-fluid">
+                            <div class="row pt-2">
+                                <h4 class="col-6 my-color-orange t5 my-text-left">{{getLocalDate(dateSpend.key)}}</h4>
+                                <h4 class="col-6 my-color-orange t5 my-text-right">{{getTotalExpense(dateSpend.value) | number : '1.0-2'}} €</h4>
+                            </div>
+                        </div>
+                    </li>
+            
+                    <li *ngFor="let expense of dateSpend.value" class="list-group-item py-0 my-border-list-grey">
+                        <button class="container-fluid btn text-dark py-0" (click)="updateExpense(expense.id)">
+                            <div class="row py-1">
+                                <div class="col-2" ><img class="p-0" src="../{{expense.type.path}}" alt="calendar-week" height="25px" width="25px" ></div>
+                                <h4 class="col-7 t5 text-center">{{expense.type.name}}</h4>
+                                <h4 class="col-3 text-align-right t5 text-center">{{expense.value | number : '1.0-2'}} €</h4>
+                            </div>
+                        </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+        </div>
+        <div class="col-sm-6 mt-4">
+          <div class="card card-list">
+            <div class="card-body p-0">
+              <div class="row px-4 pt-3"> 
+                  <div class="col-11">
+                      <h6 class="t5">Totale dépensé par les colocataires</h6>
+                  </div>
+                  <div class="col-1 p-0">
+                      <img src="../../assets/icons/more.png" class="h25-w25">
+                  </div>
+              </div>
+
+              <div class="row mt-3">
+                <ul class="list-group">
+                    <li *ngIf="!!colocation && !!colocation.owner" class="list-group-item my-border-list-grey">
+                        <div class="row">
+                            <div class="col-2"><img src="../../{{colocation.owner.image}}" class="h35-w35 rounded-circle"></div>
+                            <div class="col-4"><p>{{colocation.owner.firstName}}</p></div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <p class="m-0 t5 my-text-right">{{mapTotalExpenseByUser.get(colocation.owner.id) ? mapTotalExpenseByUser.get(colocation.owner.id) : 0| number : '1.0-2'}} €</p>
+                                </div>
+                                <div class="text-end">
+                                    <h6 *ngIf="(mapTotalExpenseByUser.get(colocation.owner.id) - avgDepenseAllUsers) > 0" class="t6 text-success"> +{{mapTotalExpenseByUser.get(colocation.owner.id) - avgDepenseAllUsers}} € que la moyenne</h6>
+                                    <h6 *ngIf="!!avgDepenseAllUsers && (mapTotalExpenseByUser.get(colocation.owner.id) - avgDepenseAllUsers) < 0" class="t6 text-danger">{{mapTotalExpenseByUser.get(colocation.owner.id) - avgDepenseAllUsers }} € que la moyenne</h6>
+                                    <h6 *ngIf="(mapTotalExpenseByUser.get(colocation.owner.id) - avgDepenseAllUsers) === 0" class="t6 text-success">Vous êtes quitte</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li *ngFor="let user of colocation?.users" class="list-group-item my-border-list-grey">
+                        <div class="row">
+                            <div class="col-2"><img src="../../{{user.image}}" class="h35-w35 rounded-circle"></div>
+                            <div class="col-4"><p>{{user.firstName}}</p></div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <p class="m-0 t5 my-text-right">{{mapTotalExpenseByUser.get(user.id) ? mapTotalExpenseByUser.get(user.id) : 0 | number : '1.0-2'}} €</p>
+                                </div>
+                                <div class="text-end" *ngIf="!!mapTotalExpenseByUser.get(user.id)">
+                                    <h6 *ngIf="(mapTotalExpenseByUser.get(user.id) - avgDepenseAllUsers) > 0" class="t6 text-success"> +{{mapTotalExpenseByUser.get(user.id) - avgDepenseAllUsers}} € que la moyenne</h6>
+                                    <h6 *ngIf="!!avgDepenseAllUsers && (mapTotalExpenseByUser.get(user.id) - avgDepenseAllUsers) < 0" class="t6 text-danger">{{mapTotalExpenseByUser.get(user.id) - avgDepenseAllUsers }} € que la moyenne</h6>
+                                    <h6 *ngIf="(mapTotalExpenseByUser.get(user.id) - avgDepenseAllUsers) === 0" class="t6 text-success">Vous êtes quitte</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-6 text-center">
+                    <h6 class="t6">Dépense moyenne : {{avgDepenseAllUsers}} €</h6>
+                </div>
+                <div class="col-6 text-center">
+                    <h6 class="t6">Total dépense : {{totalDepenseAllUsers}} €</h6>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>        
+    </div>
+
+</div>
+

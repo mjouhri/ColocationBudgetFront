@@ -1,0 +1,120 @@
+<div class="container-fluid">
+  <div class="row" id="top">
+    <h1 class="text-white mb-3">Mes colocations</h1>
+
+    <div class="col-sm-6"> 
+      <div class="card card-top m-2">
+        <div class="card-body">
+          <div class="container-fluid p-0">
+            <div class="row">
+              <div class="col-8">
+                <h5>Nouvelle colocation</h5>
+              </div>
+              <div class="col-4">
+                <img src="../../assets/icons/plus-sign.png" class="w-user h-user">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6"> 
+      <div class="card card-top m-2">
+        <div class="card-body">
+          <div class="container-fluid p-0">
+            <div class="row">
+              <div class="col-8">
+                <h5>Rejoindre une colocation</h5>
+              </div>
+              <div class="col-4">
+                <img src="../../assets/icons/qr-code-black.png" class="w-user h-user">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+    <div class="row" id="buttom">
+      <div *ngFor="let colocation of userColocations?.colocations ; index as i" class="col-sm-6 col-md-4" (click)="openColocation(colocation.id)">
+        <div class="card card-list m-2">
+            <div class="card-body">
+              <h1 class="card-title text-center t2">{{colocation.name}}</h1>
+
+                <div class="container-fluid p-0">
+                  <div class="row" *ngIf="colocation.users.length > 1">
+
+                    <div class="col-2"></div>
+
+                    <div class="col-8">
+                      <div class="container-fluid p-0">
+                        <div class="row">
+
+                          <div *ngIf="!!colocation.owner" class="col-4 t5">
+                            <img src="../../{{colocation.owner.image}}" class="w-user h-user rounded-circle">
+                            <p class="text-center w-user mb-0">{{colocation.owner.firstName}}</p>
+                          </div>
+                          <div *ngFor="let user of colocation.users | slice:0:2"  class="col-4 t5">
+                              <img src="../../{{user.image}}" class="w-user h-user rounded-circle">
+                              <p class="text-center w-user mb-0">{{user.firstName}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-2"></div>
+
+                  </div>
+
+                  <div class="row" *ngIf="colocation.users.length === 1">
+
+                    <div class="col-2"></div>
+
+                    <div class="col-8">
+                      <div class="container-fluid p-0">
+                        <div class="row">
+                          <div class="col-2"></div>
+                          <div class="col-4 t5">
+                            <img src="../../{{colocation.owner.image}}" class="w-user h-user rounded-circle">
+                            <p class="text-center w-user mb-0">{{colocation.owner.firstName}}</p>
+                          </div>
+                          <div class="col-4 t5">
+                            <img src="../../{{colocation.users[0].image}}" class="w-user h-user rounded-circle">
+                            <p class="text-center w-user mb-0">{{colocation.users[0].firstName}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-2"></div>
+
+                  </div>
+
+                  <div class="row" *ngIf="colocation.users.length === 0">
+
+                    <div class="col-2"></div>
+
+                    <div class="col-8">
+                      <div class="container-fluid p-0">
+                        <div class="row">
+                          <div class="col-4"></div>
+                          <div class="col-4 t5">
+                            <img src="../../{{colocation.owner.image}}" class="w-user h-user rounded-circle">
+                            <p class="text-center w-user mb-0">{{colocation.owner.firstName}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-2"></div>
+
+                  </div>
+
+               </div>
+               <div class="text-center t4" *ngIf="colocation.users.length > 2"><p class="mb-0"> plus {{colocation.users.length - 2}} autre(s) ...</p></div>
+             </div>
+         </div>
+    </div>
+</div>
