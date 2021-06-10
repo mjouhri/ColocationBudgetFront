@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -21,6 +21,12 @@ export class UserColocationsService {
 
   getNbColocationsByIdUser(idUser: number): Observable<number> {
     return this._httpClient.get<number>(`${this.SERVER_URL}/nb/${idUser}`);
+  }
+
+  createNewColocation(name: String, idUser:number): Observable<UserColocations> {
+    let params = new HttpParams();
+    params = params.set('name', `${name}`);
+    return this._httpClient.post<UserColocations>(`${this.SERVER_URL}/newColocation/${idUser}`, { params });
   }
 
 }

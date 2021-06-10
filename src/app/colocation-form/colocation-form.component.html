@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-1 col-md-2"></div>
+
+        <div class="col-10 col-md-8">
+          <h2 class="mt-5">Nouvelle colocation</h2>
+          <form [formGroup]="colocationForm" (ngSubmit)="submit()" class="my-mt-3">
+            <div class="form-group">
+              <label for="name">Donnez un nom à votre nouvelle colocation</label>
+              <input type="text" id="name"
+                     class="form-control" formControlName="name">
+            </div>
+            
+            <button class="btn btn-primary btn-block mt-2 w-100" [disabled]="colocationForm.invalid"
+                    type="submit">Enregistrer
+            </button>
+          </form>
+        </div>
+      </div>
+</div>

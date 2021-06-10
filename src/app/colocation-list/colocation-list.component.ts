@@ -16,7 +16,16 @@ export class ColocationListComponent implements OnInit {
 
     this.userColocationsService.getUserColocationsById(this.route.snapshot.params['id']).subscribe(
       (userColocations: UserColocations) => {
-        this.userColocations = userColocations;
+        if(!!userColocations && userColocations !=null){
+          this.userColocations = userColocations;
+        }
+        else {
+          this.router.navigate(['/']);
+        }
+
+      },
+      (error) => {
+        this.router.navigate(['/']);
       }
     );
    }
@@ -32,6 +41,9 @@ export class ColocationListComponent implements OnInit {
     this.router.navigate(['/colocation/', this.userColocations.user.id, idColocation]);
   }
 
+  newColocation() {
+    this.router.navigate(['/colocation/new/1']);
+  }
   
 
 }
