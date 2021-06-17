@@ -1,4 +1,4 @@
-import { Expense } from "./expense.model";
+import { Spend } from "./spend.model";
 import { User } from "./user.model";
 
 export interface Colocation {
@@ -9,5 +9,5 @@ export interface Colocation {
     name: String;
     owner: User;
     users: User[];
-    expenses: Expense[];
+    spends: Spend[];
 }

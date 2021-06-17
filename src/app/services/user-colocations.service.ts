@@ -24,9 +24,7 @@ export class UserColocationsService {
   }
 
   createNewColocation(name: String, idUser:number): Observable<UserColocations> {
-    let params = new HttpParams();
-    params = params.set('name', `${name}`);
-    return this._httpClient.post<UserColocations>(`${this.SERVER_URL}/newColocation/${idUser}`, { params });
+    return this._httpClient.post<UserColocations>(`${this.SERVER_URL}/newColocation/${idUser}`, name);
   }
 
 }

@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-1 col-md-2"></div>
+
+        <div class="col-md-8">
+          <button type="button" class="btn d-block d-md-none mt-2" (click)="previous_page()"><img src="../../assets/icons/left-arrow-black.png" alt="arrow-left-circle" width="30px" height="30px"></button>
+          <h2 class="mt-4">Nouvelle dépense</h2>
+          <form [formGroup]="spendForm" (ngSubmit)="submit()" class="mt-4">
+            <div class="form-group">
+              <label for="title">Type</label>
+              <select class="form-select" aria-label="Default select example" formControlName="type">
+                <option *ngFor="let type of listTypeSpend; let i = index" [value]="i">{{type.name}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="author">Montant</label>
+              <input type="number" id="amount"
+                     class="form-control" formControlName="amount">
+            </div>
+            <div class="form-group">
+              <label for="synopsis">Description</label>
+              <input type="text" id="description"
+                     class="form-control" formControlName="description">
+            </div>
+
+            <div class="form-group" >
+                <label for="synopsis">Date</label>
+                <input type="date" id="date"
+                      class="form-control" formControlName="date">
+            </div>
+
+            <div class="form-group">
+              <label for="title">Payer par</label>
+              <select class="form-select" aria-label="Default select example">
+                <option *ngFor="let user of listUser" value="user.id">{{user.firstName}}</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="synopsis">Mode de paiement</label>
+                <select class="form-select" aria-label="Default select example" formControlName="paymentMethod">
+                  <option [value]="0">Carte bancaire</option>
+                  <option [value]="1">Espèces</option>
+                  <option [value]="2">Virement</option>
+                  <option [value]="3">Paypal</option>
+                  <option [value]="4">Autre</option>
+                </select>
+            </div>
+            
+            <button class="btn btn-primary btn-block mt-2 w-100" [disabled]="spendForm.invalid"
+                    type="submit">Enregistrer
+            </button>
+          </form>
+        </div>
+      </div>
+</div>

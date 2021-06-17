@@ -11,12 +11,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { ColocationDetailsComponent } from './colocation-details/colocation-details.component';
 import { DatePipe } from '@angular/common';
 import { ColocationFormComponent } from './colocation-form/colocation-form.component';
+import { SpendFormComponent } from './spend-form/spend-form.component';
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'colocations/:id', component: ColocationListComponent},
   {path: 'colocation/new/:id', component: ColocationFormComponent},
   {path: 'colocation/:id/:idColocation', component: ColocationDetailsComponent},
+  {path: 'spend/:idColocation', component: SpendFormComponent},
+
 ]
 
 @NgModule({
@@ -25,7 +28,8 @@ const appRoutes: Routes = [
     ColocationListComponent,
     LoginComponent,
     ColocationDetailsComponent,
-    ColocationFormComponent
+    ColocationFormComponent,
+    SpendFormComponent
   ],
   imports: [
     BrowserModule,
