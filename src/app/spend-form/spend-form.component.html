@@ -32,8 +32,8 @@
 
             <div class="form-group">
               <label for="title">Payer par</label>
-              <select class="form-select" aria-label="Default select example">
-                <option *ngFor="let user of listUser" value="user.id">{{user.firstName}}</option>
+              <select class="form-select" aria-label="Default select example" formControlName="userPaye">
+                <option *ngFor="let user of listUser" [value]="user.id">{{user.firstName}}</option>
               </select>
             </div>
             

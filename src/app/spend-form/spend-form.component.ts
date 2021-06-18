@@ -33,8 +33,9 @@ export class SpendFormComponent implements OnInit {
       type: ['', Validators.required],
       amount: ['', Validators.required],
       description: '',
-      date: '',
-      paymentMethod: '',
+      date: ['', Validators.required],
+      paymentMethod: ['', Validators.required],
+      userPaye: ['', Validators.required],
     });
 
     this.colocationService.getListSpendType().subscribe(
@@ -58,10 +59,9 @@ export class SpendFormComponent implements OnInit {
       amount: this.spendForm.get('amount').value,
       description: this.spendForm.get('description').value,
       date: this.spendForm.get('date').value,
-      paymentMethod: this.spendForm.get('paymentMethod').value
+      paymentMethod: this.spendForm.get('paymentMethod').value,
+      userPaye: this.getUserByID(+this.spendForm.get('userPaye').value)
     } as Spend;
-
-    //console.log(this.spend);
 
     this.colocationService.addSpendToColocation(this.idColocation, this.spend).subscribe(
       () => {
@@ -73,6 +73,18 @@ export class SpendFormComponent implements OnInit {
 
   previous_page(){
     this.location.back();
+  }
+
+  getUserByID(id: number): User{
+    let useer: User = null;
+    this.listUser.map(
+      (user: User)=> {
+        if(user.id === id) {
+          useer = user;
+        }
+      }
+    );
+    return useer; 
   }
 
 }

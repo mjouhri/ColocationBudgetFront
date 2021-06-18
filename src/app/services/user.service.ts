@@ -23,4 +23,8 @@ export class UserService {
     return this._httpClient.get<User>(`${this.SERVER_URL}`, { params });
   }
 
+  getUserByID(id: number): Observable<User> {
+    return this._httpClient.get<User>(`${this.SERVER_URL}/${id}`);
+  }
+
 }
