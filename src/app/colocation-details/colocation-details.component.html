@@ -97,48 +97,11 @@
 
     <div class="row">      
         <div class="col-sm-6 mt-4">
-            <div class="card card-list">
-                
-              <div class="container-fluid p-0">
-                <div class="row px-4 pt-3"> 
-                  <div class="col-9">
-                      <h6 class="t5">Liste des dépenses</h6>
-                  </div>
-                  <div class="col-2">
-                      <img (click)="newSpend()" src="../../assets/icons/plus.png" class="h25-w25">
-                  </div>
-                  <div class="col-1 p-0">
-                      <img src="../../assets/icons/more.png" class="h25-w25">
-                  </div>
-                </div>
-                <div class="row mt-3">
-                  <ul *ngFor="let dateSpend of mapDateSpend | keyvalue: keyDescOrder " class="list-group py-0">
-                    <li class="list-group-item p-0 my-border-list-grey">
-                        <div class="container-fluid">
-                            <div class="row pt-2">
-                                <h4 class="col-6 my-color-orange t5 my-text-left">{{getLocalDate(dateSpend.key)}}</h4>
-                                <h4 class="col-6 my-color-orange t5 my-text-right">{{getTotalSpend(dateSpend.value) | number : '1.0-2'}} €</h4>
-                            </div>
-                        </div>
-                    </li>
-            
-                    <li *ngFor="let spend of dateSpend.value" class="list-group-item py-0 my-border-list-grey">
-                        <div class="container-fluid btn text-dark py-0" (click)="updateSpend(spend.id)">
-                            <div class="row py-1">
-                                <div class="col-2" ><img class="p-0" src="../../{{spend.type?.path}}" height="25px" width="25px" ></div>
-                                <h4 class="col-7 t5 text-center">{{spend.type?.name}}</h4>
-                                <h4 class="col-3 text-align-right t5 text-center">{{spend.amount | number : '1.0-2'}} €</h4>
-                            </div>
-                        </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-            </div>
+             <app-spend-list [colocation]="colocation" [mapDateSpend]="mapDateSpend">
+             </app-spend-list>
         </div>
         <div class="col-sm-6 mt-4">
-          <div class="card card-list">
+          <!-- <div class="card card-list">
             <div class="card-body p-0">
               <div class="row px-4 pt-3"> 
                   <div class="col-11">
@@ -196,7 +159,9 @@
               </div>
             </div>
 
-          </div>
+          </div> -->
+          <app-colocation-total-spend-per-roommate [colocation]="colocation" [mapTotalSpendByUser]="mapTotalSpendByUser" [avgDepenseAllUsers]="avgDepenseAllUsers" [totalDepenseAllUsers]="totalDepenseAllUsers">
+          </app-colocation-total-spend-per-roommate>
         </div>        
     </div>
 

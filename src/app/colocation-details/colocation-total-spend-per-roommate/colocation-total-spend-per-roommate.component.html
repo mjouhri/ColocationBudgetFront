@@ -1,0 +1,59 @@
+<div class="card card-list">
+    <div class="card-body p-0">
+      <div class="row px-4 pt-3"> 
+          <div class="col-11">
+              <h6 class="t5">Totale dépensé par les colocataires </h6>
+          </div>
+          <div class="col-1 p-0">
+              <img src="../../assets/icons/more.png" class="h25-w25">
+          </div>
+      </div>
+
+      <div class="row mt-3">
+        <ul class="list-group">
+            <li *ngIf="!!colocation && !!colocation.owner" class="list-group-item my-border-list-grey">
+                <div class="row">
+                    <div class="col-2"><img src="../../{{colocation.owner.image}}" class="h35-w35 rounded-circle"></div>
+                    <div class="col-4"><p>{{colocation.owner.firstName}}</p></div>
+                    <div class="col-6">
+                        <div class="row">
+                            <p class="m-0 t5 my-text-right">{{mapTotalSpendByUser.get(colocation.owner.id) ? mapTotalSpendByUser.get(colocation.owner.id) : 0| number : '1.0-2'}} €</p>
+                        </div>
+                        <div class="text-end">
+                            <h6 *ngIf="(mapTotalSpendByUser.get(colocation.owner.id) - avgDepenseAllUsers) > 0" class="t6 text-success"> +{{mapTotalSpendByUser.get(colocation.owner.id) - avgDepenseAllUsers}} € de la moyenne</h6>
+                            <h6 *ngIf="!!avgDepenseAllUsers && (mapTotalSpendByUser.get(colocation.owner.id) - avgDepenseAllUsers) < 0" class="t6 text-danger">{{mapTotalSpendByUser.get(colocation.owner.id) - avgDepenseAllUsers }} € de la moyenne</h6>
+                            <h6 *ngIf="(mapTotalSpendByUser.get(colocation.owner.id) - avgDepenseAllUsers) === 0" class="t6 text-success">Vous êtes quitte</h6>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li *ngFor="let user of colocation?.users" class="list-group-item my-border-list-grey">
+                <div class="row">
+                    <div class="col-2"><img src="../../{{user.image}}" class="h35-w35 rounded-circle"></div>
+                    <div class="col-4"><p>{{user.firstName}}</p></div>
+                    <div class="col-6">
+                        <div class="row">
+                            <p class="m-0 t5 my-text-right">{{mapTotalSpendByUser.get(user.id) ? mapTotalSpendByUser.get(user.id) : 0 | number : '1.0-2'}} €</p>
+                        </div>
+                        <div class="text-end" *ngIf="!!mapTotalSpendByUser.get(user.id)">
+                            <h6 *ngIf="(mapTotalSpendByUser.get(user.id) - avgDepenseAllUsers) > 0" class="t6 text-success"> +{{mapTotalSpendByUser.get(user.id) - avgDepenseAllUsers}} € de la moyenne</h6>
+                            <h6 *ngIf="!!avgDepenseAllUsers && (mapTotalSpendByUser.get(user.id) - avgDepenseAllUsers) < 0" class="t6 text-danger">{{mapTotalSpendByUser.get(user.id) - avgDepenseAllUsers }} € de la moyenne</h6>
+                            <h6 *ngIf="(mapTotalSpendByUser.get(user.id) - avgDepenseAllUsers) === 0" class="t6 text-success">Vous êtes quitte</h6>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-6 text-center">
+            <h6 class="t6">Dépense moyenne : {{avgDepenseAllUsers}} €</h6>
+        </div>
+        <div class="col-6 text-center">
+            <h6 class="t6">Total dépense : {{totalDepenseAllUsers}} €</h6>
+        </div>
+      </div>
+    </div>
+
+  </div>

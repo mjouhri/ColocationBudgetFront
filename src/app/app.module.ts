@@ -12,6 +12,8 @@ import { ColocationDetailsComponent } from './colocation-details/colocation-deta
 import { DatePipe } from '@angular/common';
 import { ColocationFormComponent } from './colocation-form/colocation-form.component';
 import { SpendFormComponent } from './spend-form/spend-form.component';
+import { SpendListComponent } from './colocation-details/spend-list/spend-list.component';
+import { ColocationTotalSpendPerRoommateComponent } from './colocation-details/colocation-total-spend-per-roommate/colocation-total-spend-per-roommate.component';
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
@@ -29,7 +31,9 @@ const appRoutes: Routes = [
     LoginComponent,
     ColocationDetailsComponent,
     ColocationFormComponent,
-    SpendFormComponent
+    SpendFormComponent,
+    SpendListComponent,
+    ColocationTotalSpendPerRoommateComponent
   ],
   imports: [
     BrowserModule,

@@ -98,7 +98,7 @@ export class ColocationDetailsComponent implements OnInit {
       this.avgDepenseAllUsers = this.totalDepenseAllUsers;
     }
     else{
-      this.avgDepenseAllUsers = this.totalDepenseAllUsers / this.colocation.users.length;
+      this.avgDepenseAllUsers = this.totalDepenseAllUsers / (this.colocation.users.length + 1);
     }
     
   }
